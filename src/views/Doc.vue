@@ -44,9 +44,10 @@ const menuVisible = inject<Ref<boolean>>('menuVisible')
 
   > .content {
     flex-grow: 1; // 高度变化时占据剩余空间
-    padding-top: 56px;
-    padding-left: 156px;
+    padding-top: 74px;
+    padding-left: 154px;
     @media (max-width: 500px) {
+      padding-top: 52px;
       padding-left: 0;
     }
   }
