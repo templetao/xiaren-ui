@@ -7,9 +7,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import Topnav from '../components/Topnav.vue'
-export default {
-  components: { Topnav }
-}
+
 </script>

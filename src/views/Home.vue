@@ -2,7 +2,7 @@
   <div>
     <Topnav />
     <div class="banner">
-      <h1>xiarenUI</h1>
+      <h1>xiaren-UI</h1>
       <h2>一个厉害的UI框架</h2>
       <p class="actions">
         <a href="">github</a>
@@ -11,9 +11,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import Topnav from '../components/Topnav.vue'
-export default {
-  components: { Topnav }
-}
+
 </script>
