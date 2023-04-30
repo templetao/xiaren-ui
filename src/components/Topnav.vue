@@ -19,10 +19,14 @@ const toggleMenu = () => {
 
 <style lang="scss" scoped>
 .topnav {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: pink;
   display: flex;
   padding: 16px;
+  z-index: 10;
   justify-content: center;
   align-items: center;
 
