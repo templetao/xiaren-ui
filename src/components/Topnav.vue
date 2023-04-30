@@ -19,6 +19,7 @@ const toggleMenu = () => {
 
 <style lang="scss" scoped>
 .topnav {
+  position: relative;
   background-color: pink;
   display: flex;
   padding: 16px;
@@ -42,6 +43,14 @@ const toggleMenu = () => {
   }
 
   > .toggleAside {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: red;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   @media (max-width: 500px) {
@@ -50,6 +59,9 @@ const toggleMenu = () => {
     }
     > .logo {
       margin: 0 auto;
+    }
+    > .toggleAside {
+      display: inline-block;
     }
   }
 }
