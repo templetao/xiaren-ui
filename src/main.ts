@@ -11,7 +11,7 @@ const router = createRouter({
   history: history,
   routes: [
     { path: '/', component: Home },
-    { path: '/x', component: Doc }
+    { path: '/doc', component: Doc }
   ]
 });
 
