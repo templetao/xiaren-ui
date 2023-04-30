@@ -1,6 +1,6 @@
 <template>
   <div class="topnav">
-    <div class="logo" @click="toggleMenu">LOGO</div>
+    <span class="toggleAside" @click="toggleMenu">LOGO</span>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -22,6 +22,8 @@ const toggleMenu = () => {
   background-color: pink;
   display: flex;
   padding: 16px;
+  justify-content: center;
+  align-items: center;
 
   > .logo {
     max-width: 6em;
@@ -38,4 +40,17 @@ const toggleMenu = () => {
       margin: 10px 1em;
     }
   }
-}</style>
+
+  > .toggleAside {
+  }
+
+  @media (max-width: 500px) {
+    > .menu {
+      display: none;
+    }
+    > .logo {
+      margin: 0 auto;
+    }
+  }
+}
+</style>
