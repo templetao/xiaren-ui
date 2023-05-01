@@ -1,21 +1,35 @@
 <template>
-  <button class="xiaren-button" :class="{[`theme-${theme}`]: theme}">
+  <button class="xiaren-button" :class="classes">
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts">
+import {computed} from 'vue'
+
 export default {
   inheritAttrs: false,
   props: {
     theme: {
       type: String,
       default: 'button'
+    },
+    size: {
+      type: String,
+      default: 'normal'
     }
   },
-  setup(props, context) {
-    const {...rest} = context.attrs
-    return {rest}
+  setup(props) {
+    const {theme, size} = props
+    const classes = computed(() => {
+      return {
+        [`xiaren-theme-${theme}`]: theme,
+        [`xiaren-size-${size}`]: size,
+      }
+    })
+    return {
+      classes
+    }
   }
 }
 </script>
@@ -46,8 +60,7 @@ $radius: 4px;
     margin-left: 8px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover, &:focus {
     color: $blue;
     border-color: $blue;
   }
@@ -58,6 +71,26 @@ $radius: 4px;
 
   &::-moz-focus-inner {
     border: 0;
+  }
+
+  &.xiaren-theme-link {
+    border-color: transparent;
+    box-shadow: none;
+    color: $blue;
+
+    &:hover, &:focus {
+      color: lighten($blue, 20%);
+    }
+  }
+
+  &.xiaren-theme-text {
+    border-color: transparent;
+    box-shadow: none;
+    color: inherit;
+
+    &:hover, &:focus {
+      background: darken(white, 5%);
+    }
   }
 }
 </style>
