@@ -33,6 +33,7 @@ $h2: calc($h - 4px);
   height: $h;
   vertical-align: middle;
   border: none;
+  margin-bottom: 8px;
   background: #bfbfbf; // #1890ff
   border-radius: calc($h * 2);
   outline: none;
@@ -40,7 +41,7 @@ $h2: calc($h - 4px);
   transition: all 250ms ease-in-out;
 
   &:focus {
-    box-shadow: 0 0 10px rgba(191, 191, 191, 0.7);
+    box-shadow: 0 0 10px rgba(191, 191, 191, 0.5);
   }
 
   > span {
@@ -86,7 +87,10 @@ $h2: calc($h - 4px);
   }
 
   &:focus {
-    box-shadow: 0 0 10px rgba(24, 144, 255, 0.7);
+    box-shadow: 0 0 10px rgba(24, 144, 255, 0.5);
+    &:hover {
+      box-shadow: none;
+    }
   }
 
   &:active {
