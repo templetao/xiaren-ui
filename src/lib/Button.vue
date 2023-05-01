@@ -1,5 +1,5 @@
 <template>
-  <button class="xiaren-button" :class="classes">
+  <button class="xiaren-button" :class="classes" :disabled="disabled">
     <slot></slot>
   </button>
 </template>
@@ -21,6 +21,10 @@ export default {
     level: {
       type: String,
       default: 'normal'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
@@ -46,6 +50,7 @@ $color: #333;
 $blue: #40a9ff;
 $red: #f56c6c;
 $radius: 4px;
+$grey: #909399;
 
 .xiaren-button {
   box-sizing: border-box;
@@ -88,6 +93,7 @@ $radius: 4px;
 
     &:hover, &:focus {
       color: lighten($blue, 20%);
+      text-decoration: underline;
     }
   }
 
@@ -161,6 +167,30 @@ $radius: 4px;
 
       &:hover, &:focus {
         color: darken($red, 10%);
+      }
+    }
+  }
+
+  &.xiaren-theme-button {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+      border-color: $grey;
+
+      &:hover {
+        border-color: $grey;
+      }
+    }
+  }
+
+  &.xiaren-theme-link, &.xiaren-theme-text {
+    &[disabled] {
+      cursor: not-allowed;
+      color: $grey;
+
+      &:hover {
+        text-decoration: none;
+        background-color: transparent;
       }
     }
   }

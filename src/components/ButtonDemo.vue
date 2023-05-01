@@ -43,11 +43,14 @@
       <Button theme="text" level="danger">危险文本按钮</Button>
     </div>
   </div>
+  <h1>示例4</h1>
+  <div>
+    <Button disabled>不能点</Button>
+    <Button theme="link" disabled>不能点</Button>
+    <Button theme="text" disabled>不能点</Button>
+  </div>
 </template>
 <script setup lang="ts">
 import Button from '../lib/Button.vue'
 
-const onClick = () => {
-  console.log(111)
-}
 </script>
