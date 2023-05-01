@@ -11,7 +11,7 @@
   <div>
     <Button size="big">大</Button>
     <Button>正常</Button>
-    <Button size="text">小</Button>
+    <Button size="small">小</Button>
   </div>
 </template>
 <script setup lang="ts">

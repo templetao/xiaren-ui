@@ -75,7 +75,7 @@ $h2: calc($h - 4px);
   }
 }
 
-.xiaren-switch.xiaren-checked {
+.xiaren-checked {
   background-color: #1890ff;
 
   > span {
@@ -83,22 +83,23 @@ $h2: calc($h - 4px);
   }
 
   > p {
-    margin: 0 8px 0 24px;
+    margin: 0 24px 0 8px;
   }
 
   &:focus {
     box-shadow: 0 0 10px rgba(24, 144, 255, 0.5);
+
     &:hover {
       box-shadow: none;
     }
-  }
 
-  &:active {
-    box-shadow: none;
+    &:active {
+      box-shadow: none;
 
-    > span {
-      width: calc($h + 2px);
-      margin-left: -6px;
+      > span {
+        width: calc($h + 2px);
+        margin-left: -6px;
+      }
     }
   }
 }
