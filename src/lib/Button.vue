@@ -1,5 +1,6 @@
 <template>
   <button class="xiaren-button" :class="classes" :disabled="disabled">
+    <span v-if="loading" class="xiaren-loadingIndicator"></span>
     <slot></slot>
   </button>
 </template>
@@ -23,6 +24,10 @@ export default {
       default: 'normal'
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
       type: Boolean,
       default: false
     }
@@ -192,6 +197,27 @@ $grey: #909399;
         text-decoration: none;
         background-color: transparent;
       }
+    }
+  }
+
+  > .xiaren-loadingIndicator {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 8px;
+    border-color: lighten($blue, 20%) lighten($blue, 10%) $blue transparent;
+    border-style: solid;
+    border-width: 2px;
+    animation: xiaren-spin 1s infinite linear;
+  }
+
+  @keyframes xiaren-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

@@ -49,6 +49,10 @@
     <Button theme="link" disabled>不能点</Button>
     <Button theme="text" disabled>不能点</Button>
   </div>
+  <h1>示例5</h1>
+  <div>
+    <Button loading>加载中</Button>
+  </div>
 </template>
 <script setup lang="ts">
 import Button from '../lib/Button.vue'
