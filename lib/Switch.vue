@@ -1,6 +1,10 @@
 <template>
   <div>
-    <button @click="toggle" :class="{ checked: value }"><span>Switch</span></button>
+    <button @click="toggle" :class="{ checked: value }">
+      <span></span>
+      <p v-if="!value">0</p>
+      <p v-else>1</p>
+    </button>
   </div>
 </template>
 
@@ -31,7 +35,7 @@ button {
   border-radius: calc($h * 2);
   outline: none;
   cursor: pointer;
-  transition: all 250ms;
+  transition: all 250ms ease-in-out;
 
   &:focus {
     box-shadow: 0 0 10px rgba(191, 191, 191, 0.7);
@@ -46,6 +50,17 @@ button {
     border: none;
     border-radius: calc($h / 2);
     background: #fff;
+    transition: all 250ms ease-in-out;
+  }
+
+  > p {
+    display: inline-block;
+    width: 12px;
+    height: $h;
+    font-size: 12px;
+    color: #fff;
+    margin: 0 8px 0 24px;
+    transition: all 250ms ease-in-out;
   }
 
   &:active {
@@ -62,6 +77,10 @@ button.checked {
 
   > span {
     left: calc(100% - #{$h2} - 2px);
+  }
+
+  > p {
+    margin: 0 8px 0 24px;
   }
 
   &:focus {
