@@ -5,47 +5,40 @@
   </button>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import {computed} from 'vue'
 
-export default {
-  inheritAttrs: false,
-  props: {
-    theme: {
-      type: String,
-      default: 'button'
-    },
-    size: {
-      type: String,
-      default: 'normal'
-    },
-    level: {
-      type: String,
-      default: 'normal'
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    }
+const props = defineProps({
+  theme: {
+    type: String,
+    default: 'button'
   },
-  setup(props) {
-    const {theme, size, level} = props
-    const classes = computed(() => {
-      return {
-        [`xiaren-theme-${theme}`]: theme,
-        [`xiaren-size-${size}`]: size,
-        [`xiaren-level-${level}`]: level,
-      }
-    })
-    return {
-      classes
-    }
+  size: {
+    type: String,
+    default: 'normal'
+  },
+  level: {
+    type: String,
+    default: 'normal'
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
-}
+})
+
+const {theme, size, level} = props
+const classes = computed(() => {
+  return {
+    [`xiaren-theme-${theme}`]: theme,
+    [`xiaren-size-${size}`]: size,
+    [`xiaren-level-${level}`]: level,
+  }
+})
 </script>
 
 <style lang='scss'>
