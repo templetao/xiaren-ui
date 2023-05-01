@@ -48,14 +48,13 @@ const onClickOverlay = () => {
   }
 }
 const ok = () => {
-  if (props.ok() !== false) {
+  if (props?.ok() !== false) {
     close()
   }
 }
 const cancel = () => {
-  if (props.cancel()) {
-    close()
-  }
+  props?.cancel()
+  close()
 }
 </script>
 
