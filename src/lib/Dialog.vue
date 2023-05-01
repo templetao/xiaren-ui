@@ -4,12 +4,11 @@
     <div class="xiaren-dialog-wrapper">
       <div class="xiaren-dialog">
         <header>
-          标题
+          <slot name="title"/>
           <span class="xiaren-dialog-close" @click="close"></span>
         </header>
         <main>
-          <p>1</p>
-          <p>2</p>
+          <slot name="content"/>
         </main>
         <footer>
           <Button level="main" @click="ok">Ok</Button>
