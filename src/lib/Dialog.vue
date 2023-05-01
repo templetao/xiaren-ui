@@ -1,19 +1,19 @@
 <template>
   <template v-if="visible">
-    <div class="xiaren-dialog-overlay"></div>
+    <div class="xiaren-dialog-overlay" @click="onClickOverlay"></div>
     <div class="xiaren-dialog-wrapper">
       <div class="xiaren-dialog">
         <header>
           标题
-          <span class="xiaren-dialog-close"></span>
+          <span class="xiaren-dialog-close" @click="close"></span>
         </header>
         <main>
           <p>1</p>
           <p>2</p>
         </main>
         <footer>
-          <Button level="main">Ok</Button>
-          <Button>Cancel</Button>
+          <Button level="main" @click="ok">Ok</Button>
+          <Button @click="cancel">Cancel</Button>
         </footer>
       </div>
     </div>
@@ -27,8 +27,35 @@ const props = defineProps({
   visible: {
     type: Boolean,
     default: false
-  }
+  },
+  closeOnClickOverlay: {
+    type: Boolean,
+    default: true
+  },
+  ok: Function,
+  cancel: Function
 })
+
+const emit = defineEmits(['update:visible'])
+
+const close = () => {
+  emit('update:visible', false)
+}
+const onClickOverlay = () => {
+  if (props.closeOnClickOverlay) {
+    close()
+  }
+}
+const ok = () => {
+  if (props.ok() !== false) {
+    close()
+  }
+}
+const cancel = () => {
+  if (props.cancel()) {
+    close()
+  }
+}
 </script>
 
 <style lang='scss'>
