@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button @click="toggle" :class="{ checked: value }">
+    <button class="xiaren-switch"
+            @click="toggle"
+            :class="{'xiaren-checked': value}">
       <span></span>
       <p v-if="!value">0</p>
       <p v-else>1</p>
@@ -24,7 +26,7 @@ const toggle = () => {
 <style lang="scss">
 $h: 22px;
 $h2: calc($h - 4px);
-button {
+.xiaren-switch {
   position: relative;
   display: inline-block;
   width: $h * 2;
@@ -72,7 +74,7 @@ button {
   }
 }
 
-button.checked {
+.xiaren-switch.xiaren-checked {
   background-color: #1890ff;
 
   > span {
