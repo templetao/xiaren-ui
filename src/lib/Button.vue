@@ -93,17 +93,16 @@ $radius: 4px;
     }
   }
 
-  &.xiaren-theme-button {
-    &.xiaren-size-big {
-      font-size: 24px;
-      height: 48px;
-      padding: 0 16px;
-    }
-    &.xiaren-size-small {
-      font-size: 12px;
-      height: 20px;
-      padding: 0 4px;
-    }
+  &.xiaren-size-big {
+    font-size: 24px;
+    height: 48px;
+    padding: 0 16px;
+  }
+
+  &.xiaren-size-small {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 4px;
   }
 }
 </style>
