@@ -1,7 +1,11 @@
 <template>
   <div class="topnav">
     <span class="toggleAside" @click="toggleMenu"></span>
-    <div class="logo">LOGO</div>
+    <div class="logo">
+      <svg class="icon">
+        <use xlink:href="#icon-xiaren"></use>
+      </svg>
+    </div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
@@ -22,7 +26,6 @@ const toggleMenu = () => {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: pink;
   display: flex;
   padding: 16px;
   z-index: 10;
@@ -32,6 +35,10 @@ const toggleMenu = () => {
   > .logo {
     max-width: 6em;
     margin-right: auto;
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   > .menu {
