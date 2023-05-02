@@ -1,22 +1,21 @@
 <template>
   <div class="topnav">
-    <span class="toggleAside" @click="toggleMenu">LOGO</span>
+    <span class="toggleAside" @click="toggleMenu"></span>
+    <div class="logo">LOGO</div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
   </div>
 </template>
-
 <script setup lang="ts">
 import {inject, Ref} from 'vue'
 
-const menuVisible = inject<Ref<boolean>>('menuVisible') // get
+const menuVisible = inject<Ref<boolean>>('menuVisible') //get
 const toggleMenu = () => {
   menuVisible.value = !menuVisible.value
 }
 </script>
-
 <style lang="scss" scoped>
 .topnav {
   position: fixed;
@@ -50,7 +49,7 @@ const toggleMenu = () => {
     display: none;
     width: 24px;
     height: 24px;
-    background: red;
+    background-color: red;
     position: absolute;
     left: 16px;
     top: 50%;

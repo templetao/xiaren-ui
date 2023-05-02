@@ -63,12 +63,12 @@ const menuVisible = inject<Ref<boolean>>('menuVisible')
   > main {
     flex-grow: 1; //宽度变化时占据剩余空间
     padding: 16px;
-    background-color: lightgreen;
+    background-color: #fff;
   }
 }
 
 aside {
-  background: #fff;
+  background: lightblue;
   width: 150px;
   padding: 74px 16px 0;
   position: fixed;

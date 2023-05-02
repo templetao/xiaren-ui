@@ -35,7 +35,7 @@ import Topnav from '../components/Topnav.vue'
       height: $h;
       line-height: $h;
       border-radius: calc($h / 2);
-      padding: 5px 8px;
+      padding: 4px 8px;
     }
   }
 }

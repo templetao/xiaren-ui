@@ -1,88 +1,79 @@
 <template>
   <div class="xiaren-tabs">
     <div class="xiaren-tabs-nav" ref="container">
-      <div class="xiaren-tabs-nav-item"
-           v-for="(itemTitle, index) in titles"
+      <div class="xiaren-tabs-nav-item" v-for="(itemTitle, index) in titles"
            :ref="(el) => {
-             if(itemTitle === selected) selected = el;
+            if (itemTitle === selected) selectedItem = el;
            }"
            @click="select(itemTitle)"
-           :class="{selected: itemTitle === selected}"
+           :class="{ selected: itemTitle === selected }"
            :key="index"
       >
         {{ itemTitle }}
       </div>
-      <div class="xiaren-tabs-nav-indicator"></div>
+      <div class="xiaren-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="xiaren-tabs-content">
-      <component class="xiaren-tabs-content-item"
-                 :key="current.props.title" :is="current"
-      />
+      <component :key="current.props.title" :is="current"/>
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import {computed, onMounted, ref, useSlots, watchEffect} from 'vue'
+<script lang="ts">
 import Tab from './Tab.vue'
+import {computed, ref, onMounted, watchEffect} from 'vue'
 
-const props = defineProps({
-  selected: String,
-})
-const slots = useSlots()
-const emit = defineEmits(['update:selected'])
+export default {
+  props: {
+    selected: String,
+  },
+  setup(props, context) {
+    const selectedItem = ref<HTMLDivElement>(null)
+    const indicator = ref<HTMLDivElement>(null)
+    const container = ref<HTMLDivElement>(null)
 
-const selectedItem = ref<HTMLDivElement>(null)
-const indicator = ref<HTMLDivElement>(null)
-const container = ref<HTMLDivElement>(null)
+    onMounted(() => {
+      watchEffect(
+        () => {
+          const {width} = selectedItem.value.getBoundingClientRect()
+          indicator.value.style.width = width + 'px'
+          const {left: left1} = container.value.getBoundingClientRect()
+          const {left: left2} = selectedItem.value.getBoundingClientRect()
+          const left = left2 - left1
+          indicator.value.style.left = left + 'px'
+        })
+    })
+    const defaults = context.slots.default()
+    defaults.forEach((tag) => {
+      if (tag.type !== Tab) {
+        throw new Error('Tabs 子标签必须是 Tab')
+      }
+    })
 
-// const x = () => {
-//   const { width } = selectedItem.value.getBoundingClientRect();
-//   indicator.value.style.width = width + "px";
-//   const { left: left1 } = container.value.getBoundingClientRect();
-//   const { left: left2 } = selectedItem.value.getBoundingClientRect();
-//   const left = left2 - left1;
-//   indicator.value.style.left = left + "px";
-// };
-onMounted(() => {
-  watchEffect(() => {
-    const {width} = selectedItem.value.getBoundingClientRect()
-    console.log(selectedItem.value)
-    indicator.value.style.width = width + 'px'
-    const {left: left1} = container.value.getBoundingClientRect()
-    const {left: left2} = selectedItem.value.getBoundingClientRect()
-    const left = left2 - left1
-    console.log(left)
-    indicator.value.style.left = left + 'px'
-  })
-})
-// onMounted(x);
-// onUpdated(x);
+    const current = computed(() => {
+      return defaults.find((tag) => tag.props.title === props.selected)
+    })
 
-const defaults = slots.default()
-if (!slots.default) {
-  throw new Error('Tabs 必须至少包含一个 Tab')
-}
-defaults.forEach((tag) => {
-  if (tag.type !== Tab) {
-    throw new Error('Tabs 子标签必须是 Tab')
-  }
-})
+    const titles = defaults.map((tag) => {
+      return tag.props.title
+    })
 
-const current = computed(() => {
-  return defaults.find((tag) => tag.props.title)
-})
-
-const titles = defaults.map((tag) => {
-  return tag.props.title
-})
-
-const select = (title: String) => {
-  emit('update:selected', title)
+    const select = (title: String) => {
+      context.emit('update:selected', title)
+    }
+    return {
+      current,
+      defaults,
+      titles,
+      select,
+      selectedItem,
+      indicator,
+      container,
+    }
+  },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $blue: #40a9ff;
 $color: #333;
 $border-color: #d9d9d9;
@@ -110,10 +101,10 @@ $border-color: #d9d9d9;
 
     &-indicator {
       position: absolute;
-      height: 4px;
+      height: 3px;
       background: $blue;
       left: 0;
-      bottom: -2px;
+      bottom: -1px;
       transition: all 250ms;
     }
   }
