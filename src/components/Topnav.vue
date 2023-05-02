@@ -1,10 +1,21 @@
 <template>
   <div class="topnav">
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <span v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+      <transition name="fade">
+        <svg v-if="menuVisible">
+          <use xlink:href="#icon-close"></use>
+        </svg>
+        <svg v-else>
+          <use xlink:href="#icon-menu"></use>
+        </svg>
+      </transition>
+    </span>
     <div class="logo">
-      <svg class="icon">
-        <use xlink:href="#icon-xiaren"></use>
-      </svg>
+      <router-link to="/">
+        <svg class="icon">
+          <use xlink:href="#icon-xiaren"></use>
+        </svg>
+      </router-link>
     </div>
     <ul class="menu">
       <li>
@@ -17,6 +28,13 @@
 <script setup lang="ts">
 import {inject, Ref} from 'vue'
 
+const props = defineProps({
+  toggleMenuButtonVisible: {
+    type: Boolean,
+    default: false
+  }
+})
+
 const menuVisible = inject<Ref<boolean>>('menuVisible') //get
 const toggleMenu = () => {
   menuVisible.value = !menuVisible.value
@@ -28,6 +46,8 @@ const toggleMenu = () => {
   top: 0;
   left: 0;
   width: 100%;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
   display: flex;
   padding: 16px;
   z-index: 10;
@@ -37,9 +57,10 @@ const toggleMenu = () => {
   > .logo {
     max-width: 6em;
     margin-right: auto;
-    > svg {
-      width: 32px;
-      height: 32px;
+
+    svg {
+      width: 42px;
+      height: 34px;
     }
   }
 
@@ -56,13 +77,18 @@ const toggleMenu = () => {
 
   > .toggleAside {
     display: none;
-    width: 24px;
-    height: 24px;
-    background-color: red;
+    width: 32px;
+    height: 32px;
     position: absolute;
     left: 16px;
     top: 50%;
     transform: translateY(-50%);
+    overflow: hidden;
+
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
 
   @media (max-width: 500px) {
