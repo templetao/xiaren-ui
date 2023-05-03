@@ -1,28 +1,20 @@
 <template>
   <div class="xiaren-tabs">
     <div class="xiaren-tabs-nav" ref="container">
-      <div
-        class="xiaren-tabs-nav-item"
-        v-for="(itemTitle, index) in titles"
-        :ref="
-          (el) => {
+      <div class="xiaren-tabs-nav-item" v-for="(itemTitle, index) in titles"
+           :ref="(el) => {
             if (itemTitle === selected) selectedItem = el;
-          }
-        "
-        @click="select(itemTitle)"
-        :class="{ selected: itemTitle === selected }"
-        :key="index"
+           }"
+           @click="select(itemTitle)"
+           :class="{ selected: itemTitle === selected }"
+           :key="index"
       >
         {{ itemTitle }}
       </div>
       <div class="xiaren-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="xiaren-tabs-content">
-      <component
-        class="xiaren-tabs-content-item"
-        :key="current.props.title"
-        :is="current"
-      />
+      <component class="xiaren-tabs-content-item" :key="current.props.title" :is="current"/>
     </div>
   </div>
 </template>

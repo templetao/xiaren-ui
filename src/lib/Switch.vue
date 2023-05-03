@@ -5,8 +5,6 @@
             :disabled="disabled"
     >
       <span></span>
-      <p v-if="!value">0</p>
-      <p v-else>1</p>
     </button>
   </div>
 </template>

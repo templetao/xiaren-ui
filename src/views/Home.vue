@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="topnavAndBanner">
-      <Topnav />
+      <Topnav/>
       <div class="banner">
         <h1>xiaren-UI</h1>
         <h2>一个厉害的UI框架</h2>
@@ -41,19 +41,21 @@
 
 <script type="ts">
 import Topnav from '../components/Topnav.vue'
+
 export default {
-  components:{ Topnav }
+  components: {Topnav}
 }
 </script>
 <style lang="scss" scoped>
 .topnavAndBanner {
   background: linear-gradient(
-    145deg,
-    rgba(227, 255, 253, 1) 0%,
-    rgba(183, 233, 230, 1) 100%
+      145deg,
+      rgba(227, 255, 253, 1) 0%,
+      rgba(183, 233, 230, 1) 100%
   );
   clip-path: ellipse(80% 60% at 50% 40%);
 }
+
 .features {
   margin: 64px auto;
   width: 400px;
@@ -63,9 +65,11 @@ export default {
   @media (min-width: 1200px) {
     width: 1200px;
   }
+
   > ul {
     display: flex;
     flex-wrap: wrap;
+
     > li {
       width: 400px;
       margin: 16px 0;
@@ -77,21 +81,25 @@ export default {
         "icon text";
       grid-template-columns: 80px auto;
       grid-template-rows: 1fr auto;
+
       > svg {
         grid-area: icon;
         width: 64px;
         height: 64px;
       }
+
       > h3 {
         grid-area: title;
         font-size: 28px;
       }
+
       > p {
         grid-area: text;
       }
     }
   }
 }
+
 .banner {
   padding: 100px 0;
   display: flex;
@@ -104,6 +112,7 @@ export default {
     padding: 8px 0;
     color: white;
     outline: none;
+
     a {
       margin: 0 8px;
       background: #02bcb0;

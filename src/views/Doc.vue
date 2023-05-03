@@ -54,9 +54,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.router-link-active {
-  text-decoration: underline;
-}
 .layout {
   display: flex;
   flex-direction: column;
@@ -68,8 +65,8 @@ export default {
 
   > .content {
     flex-grow: 1; //高度变化时占据剩余空间
-    padding-top: 75px;
-    padding-left: 153px;
+    padding-top: 60px;
+    padding-left: 156px;
     @media (max-width: 500px) {
       padding-top: 52px;
       padding-left: 0;
@@ -93,8 +90,8 @@ export default {
 
 aside {
   background: lightblue;
-  width: 285px;
-  padding: 74px 16px 0;
+  width: 160px;
+  padding: 80px 16px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -118,7 +115,7 @@ aside {
       }
 
       .router-link-active {
-        background: white;
+        background: lightgoldenrodyellow;
       }
     }
   }
