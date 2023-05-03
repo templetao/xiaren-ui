@@ -1,64 +1,86 @@
 <template>
   <div class="xiaren-tabs">
     <div class="xiaren-tabs-nav" ref="container">
-      <div class="xiaren-tabs-nav-item" v-for="(itemTitle, index) in titles"
-           :ref="(el) => {
+      <div
+        class="xiaren-tabs-nav-item"
+        v-for="(itemTitle, index) in titles"
+        :ref="
+          (el) => {
             if (itemTitle === selected) selectedItem = el;
-           }"
-           @click="select(itemTitle)"
-           :class="{ selected: itemTitle === selected }"
-           :key="index"
+          }
+        "
+        @click="select(itemTitle)"
+        :class="{ selected: itemTitle === selected }"
+        :key="index"
       >
         {{ itemTitle }}
       </div>
       <div class="xiaren-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="xiaren-tabs-content">
-      <component :key="current.props.title" :is="current"/>
+      <component
+        class="xiaren-tabs-content-item"
+        :key="current.props.title"
+        :is="current"
+      />
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import {computed, onMounted, ref, useSlots, watchEffect} from 'vue'
+<script lang="ts">
 import Tab from './Tab.vue'
+import {computed, ref, onMounted, watchEffect} from 'vue'
 
-const props = defineProps({
-  selected: String,
-})
-const slots = useSlots()
-const emit = defineEmits(['update:selected'])
-const selectedItem = ref<HTMLDivElement>(null)
-const indicator = ref<HTMLDivElement>(null)
-const container = ref<HTMLDivElement>(null)
+export default {
+  props: {
+    selected: String,
+  },
+  setup(props, context) {
+    const selectedItem = ref<HTMLDivElement>(null)
+    const indicator = ref<HTMLDivElement>(null)
+    const container = ref<HTMLDivElement>(null)
 
-onMounted(() => {
-  watchEffect(() => {
-    const {width} = selectedItem.value.getBoundingClientRect()
-    indicator.value.style.width = width + 'px'
-    const {left: left1} = container.value.getBoundingClientRect()
-    const {left: left2} = selectedItem.value.getBoundingClientRect()
-    const left = left2 - left1
-    indicator.value.style.left = left + 'px'
-  })
-})
+    onMounted(() => {
+      watchEffect(
+        () => {
+          const {width} = selectedItem.value.getBoundingClientRect()
+          indicator.value.style.width = width + 'px'
+          const {left: left1} = container.value.getBoundingClientRect()
+          const {left: left2} = selectedItem.value.getBoundingClientRect()
+          const left = left2 - left1
+          indicator.value.style.left = left + 'px'
+        },
+        // 解决异步
+        {
+          flush: 'sync', //效果更新需要缓冲时间
+        }
+      )
+    })
 
-const defaults = slots.default()
-if (!slots.default) {
-  throw new Error('Tabs 必须至少包含一个 Tab')
-}
-defaults.forEach((tag) => {
-  if (tag.type !== Tab) {
-    throw new Error('Tabs 子标签必须是 Tab')
-  }
-})
-const current = computed(() => {
-  return defaults.find((tag) => tag.props.title === props.selected) || Tab
-})
-const titles = defaults.map((tag) => {
-  return tag.props.title
-})
-const select = (title: String) => {
-  emit('update:selected', title)
+    const defaults = context.slots.default()
+    defaults.forEach((tag) => {
+      if (tag.type !== Tab) {
+        throw new Error('Tabs 子标签必须是 Tab')
+      }
+    })
+    const current = computed(() => {
+      return defaults.find((tag) => tag.props.title === props.selected) || Tab
+    })
+    const titles = defaults.map((tag) => {
+      return tag.props.title
+    })
+    const select = (title: String) => {
+      context.emit('update:selected', title)
+    }
+    return {
+      current,
+      defaults,
+      titles,
+      select,
+      selectedItem,
+      indicator,
+      container,
+    }
+  },
 }
 </script>
 

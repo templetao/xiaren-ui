@@ -39,27 +39,37 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import Topnav from '../components/Topnav.vue'
-import {inject, Ref} from 'vue'
 
-const menuVisible = inject<Ref<boolean>>('menuVisible')
+<script lang="ts">
+import {inject, Ref} from 'vue'
+import Topnav from '../components/Topnav.vue'
+
+export default {
+  components: {Topnav},
+  setup() {
+    const menuVisible = inject<Ref<boolean>>('menuVisible')
+    return {menuVisible}
+  },
+}
 </script>
 
 <style lang="scss" scoped>
+.router-link-active {
+  text-decoration: underline;
+}
 .layout {
   display: flex;
   flex-direction: column;
   height: 100vh;
 
   > .nav {
-    flex-shrink: 0; // 高度变化时不收缩
+    flex-shrink: 0; //高度变化时不收缩
   }
 
   > .content {
-    flex-grow: 1; // 高度变化时占据剩余空间
-    padding-top: 74px;
-    padding-left: 154px;
+    flex-grow: 1; //高度变化时占据剩余空间
+    padding-top: 75px;
+    padding-left: 153px;
     @media (max-width: 500px) {
       padding-top: 52px;
       padding-left: 0;
@@ -83,14 +93,14 @@ const menuVisible = inject<Ref<boolean>>('menuVisible')
 
 aside {
   background: lightblue;
-  width: 160px;
-  padding: 80px 0;
+  width: 285px;
+  padding: 74px 16px 0;
   position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   z-index: 1;
-  transition: all 0.4s cubic-bezier(0.68, 0.18, 0.54, 0.18) 0.1s;
+  transition: all 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
 
   > h2 {
     margin-bottom: 4px;
@@ -99,13 +109,16 @@ aside {
 
   > ol {
     > li {
-      > a{
+      padding: 4px 0;
+
+      > a {
         display: block;
         padding: 4px 16px;
         text-decoration: none;
       }
+
       .router-link-active {
-        background: lightgoldenrodyellow;
+        background: white;
       }
     }
   }

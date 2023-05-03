@@ -25,19 +25,23 @@
     </ul>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts">
 import {inject, Ref} from 'vue'
 
-const props = defineProps({
-  toggleMenuButtonVisible: {
-    type: Boolean,
-    default: false
-  }
-})
-
-const menuVisible = inject<Ref<boolean>>('menuVisible') //get
-const toggleMenu = () => {
-  menuVisible.value = !menuVisible.value
+export default {
+  props: {
+    toggleMenuButtonVisible: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup() {
+    const menuVisible = inject<Ref<boolean>>('menuVisible') //get
+    const toggleMenu = () => {
+      menuVisible.value = !menuVisible.value
+    }
+    return {toggleMenu, menuVisible}
+  },
 }
 </script>
 <style lang="scss" scoped>

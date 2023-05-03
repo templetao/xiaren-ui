@@ -4,52 +4,59 @@
     <slot></slot>
   </button>
 </template>
-
-<script setup lang="ts">
+<script lang="ts">
 import {computed} from 'vue'
 
-const props = defineProps({
-  theme: {
-    type: String,
-    default: 'button'
+export default {
+  props: {
+    theme: {
+      type: String,
+      default: 'button',
+    },
+    size: {
+      type: String,
+      default: 'normal',
+    },
+    level: {
+      type: String,
+      default: 'normal',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
-  size: {
-    type: String,
-    default: 'normal'
-  },
-  level: {
-    type: String,
-    default: 'normal'
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  }
-})
 
-const {theme, size, level} = props
-const classes = computed(() => {
-  return {
-    [`xiaren-theme-${theme}`]: theme,
-    [`xiaren-size-${size}`]: size,
-    [`xiaren-level-${level}`]: level,
-  }
-})
+  setup(props) {
+    const {theme, size, level} = props
+    const classes = computed(() => {
+      return {
+        [`xiaren-theme-${theme}`]: theme,
+        [`xiaren-size-${size}`]: size,
+        [`xiaren-level-${level}`]: level,
+      }
+    })
+    return {classes}
+  },
+}
 </script>
-
-<style lang='scss'>
+<style lang="scss">
+// 默认高度
 $h: 32px;
+// 边框默认颜色
 $border-color: #d9d9d9;
+// 默认字体颜色
 $color: #333;
+// 颜色参数
 $blue: #40a9ff;
 $red: #f56c6c;
+// 角度参数
 $radius: 4px;
 $grey: #909399;
-
 .xiaren-button {
   box-sizing: border-box;
   height: $h;
@@ -58,20 +65,21 @@ $grey: #909399;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  white-space: nowrap; // 文本不换行
+  //   文本不换行显示
+  white-space: nowrap;
   background: white;
   color: $color;
   border: 1px solid $border-color;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
-  transition: background 250ms;
-
-  // 相邻组件间隔 8px
+  transition: background 0.25s;
+  //   相邻组件间相隔8px
   & + & {
     margin-left: 8px;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: $blue;
     border-color: $blue;
   }
@@ -89,7 +97,8 @@ $grey: #909399;
     box-shadow: none;
     color: $blue;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: lighten($blue, 20%);
       text-decoration: underline;
     }
@@ -100,7 +109,8 @@ $grey: #909399;
     box-shadow: none;
     color: inherit;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: darken(white, 5%);
     }
   }
@@ -119,8 +129,8 @@ $grey: #909399;
 
   &.xiaren-theme-button {
     &.xiaren-level-main {
-      color: white;
       background: $blue;
+      color: white;
       border-color: $blue;
 
       &:hover, &:focus {
@@ -155,7 +165,8 @@ $grey: #909399;
     &.xiaren-level-main {
       color: $blue;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: darken($blue, 10%);
       }
     }
@@ -163,7 +174,8 @@ $grey: #909399;
     &.xiaren-level-danger {
       color: $red;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: darken($red, 10%);
       }
     }
@@ -178,10 +190,13 @@ $grey: #909399;
       &:hover {
         border-color: $grey;
       }
+
+      //   pointer-events: none;
     }
   }
 
-  &.xiaren-theme-link, &.xiaren-theme-text {
+  &.xiaren-theme-link,
+  &.xairen-theme-text {
     &[disabled] {
       cursor: not-allowed;
       color: $grey;

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Topnav/>
     <div class="topnavAndBanner">
-      <Topnav/>
+      <Topnav />
       <div class="banner">
         <h1>xiaren-UI</h1>
         <h2>一个厉害的UI框架</h2>
@@ -39,20 +38,22 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+
+<script type="ts">
 import Topnav from '../components/Topnav.vue'
-
+export default {
+  components:{ Topnav }
+}
 </script>
-
 <style lang="scss" scoped>
 .topnavAndBanner {
   background: linear-gradient(
-      145deg,
-      rgba(174, 238, 190, 1) 0%,
-      rgba(148, 187, 233, 1) 100%);
+    145deg,
+    rgba(227, 255, 253, 1) 0%,
+    rgba(183, 233, 230, 1) 100%
+  );
   clip-path: ellipse(80% 60% at 50% 40%);
 }
-
 .features {
   margin: 64px auto;
   width: 400px;
@@ -62,11 +63,9 @@ import Topnav from '../components/Topnav.vue'
   @media (min-width: 1200px) {
     width: 1200px;
   }
-
   > ul {
     display: flex;
-    flex-wrap: wrap; // 超过容器宽度时自动分布到多行上，以避免出现水平滚动条或溢出
-
+    flex-wrap: wrap;
     > li {
       width: 400px;
       margin: 16px 0;
@@ -78,45 +77,41 @@ import Topnav from '../components/Topnav.vue'
         "icon text";
       grid-template-columns: 80px auto;
       grid-template-rows: 1fr auto;
-
       > svg {
         grid-area: icon;
         width: 64px;
         height: 64px;
       }
-
       > h3 {
         grid-area: title;
         font-size: 28px;
       }
-
       > p {
         grid-area: text;
       }
     }
   }
 }
-
 .banner {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  // background: rgb(202, 249, 234);
 
   > .actions {
     padding: 8px 0;
     color: white;
     outline: none;
-
     a {
       margin: 0 8px;
       background: #02bcb0;
       $h: 28px;
       height: $h;
       line-height: $h;
-      border-radius: calc($h / 2);
-      padding: 4px 8px;
+      border-radius: $h/2;
+      padding: 5px 8px;
     }
   }
 }

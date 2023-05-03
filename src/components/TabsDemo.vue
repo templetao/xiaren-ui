@@ -7,10 +7,21 @@
   </Tabs>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import {ref} from 'vue'
 import Tabs from '../lib/Tabs.vue'
 import Tab from '../lib/Tab.vue'
-import {ref} from 'vue'
 
-const x = ref('导航1')
+export default {
+  components: {
+    Tabs,
+    Tab,
+  },
+  setup() {
+    const x = ref('导航1')
+    return {
+      x,
+    }
+  },
+}
 </script>

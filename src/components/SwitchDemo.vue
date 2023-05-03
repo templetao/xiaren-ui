@@ -1,12 +1,16 @@
 <template>
   <div>
-    <Switch v-model:value="flag"/>
+    <Switch v-model:value="flag" />
   </div>
 </template>
-<script setup lang="ts">
-import Switch from '../lib/Switch.vue'
-import {ref} from 'vue'
-
-const flag = ref(false)
-
+<script lang="ts">
+import Switch from "../lib/Switch.vue";
+import { ref } from "vue";
+export default {
+  components: { Switch },
+  setup() {
+    const flag = ref(false);
+    return { flag };
+  },
+};
 </script>

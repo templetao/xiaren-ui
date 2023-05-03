@@ -21,47 +21,56 @@
   </template>
 </template>
 
-<script setup lang='ts'>
+<script lang="ts">
 import Button from './Button.vue'
 
-const props = defineProps({
-  visible: {
-    type: Boolean,
-    default: false
+export default {
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true,
+    },
+    ok: Function,
+    cancel: Function,
   },
-  closeOnClickOverlay: {
-    type: Boolean,
-    default: true
+  components: {
+    Button,
   },
-  ok: Function,
-  cancel: Function
-})
-
-const emit = defineEmits(['update:visible'])
-
-const close = () => {
-  emit('update:visible', false)
-}
-const onClickOverlay = () => {
-  if (props.closeOnClickOverlay) {
-    close()
-  }
-}
-const ok = () => {
-  if (props?.ok() !== false) {
-    close()
-  }
-}
-const cancel = () => {
-  props?.cancel()
-  close()
+  setup(props, context) {
+    const close = () => {
+      context.emit('update:visible', false)
+    }
+    const onClickOverlay = () => {
+      if (props.closeOnClickOverlay) {
+        close()
+      }
+    }
+    const ok = () => {
+      if (props.ok?.() !== false) {
+        close()
+      }
+    }
+    const cancel = () => {
+      props.cancel?.()
+      close()
+    }
+    return {
+      close,
+      onClickOverlay,
+      ok,
+      cancel,
+    }
+  },
 }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 $radius: 4px;
 $border-color: #d9d9d9;
-
 .xiaren-dialog {
   background: white;
   border-radius: $radius;
