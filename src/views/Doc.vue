@@ -54,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$aside-index: 10;
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -96,7 +98,7 @@ aside {
   top: 0;
   left: 0;
   height: 100%;
-  z-index: 1;
+  z-index: $aside-index;
   transition: all 0.4s cubic-bezier(0.68, 0.18, 0.53, 0.18) 0.1s;
 
   > h2 {

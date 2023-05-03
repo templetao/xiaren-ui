@@ -54,7 +54,7 @@ export default {
   background: #fff;
   display: flex;
   padding: 16px;
-  z-index: 10;
+  z-index: 20;
   justify-content: center;
   align-items: center;
 
