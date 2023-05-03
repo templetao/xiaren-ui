@@ -7,20 +7,13 @@
 </template>
 <script lang="ts">
 import Switch1Demo from './Switch1Demo.vue'
-import Button from '../lib/Button.vue'
 import Switch2Demo from './Switch2Demo.vue'
-import 'prismjs'
-import 'prismjs/themes/prism-okaidia.css'
-
-const Prism = (window as any).Prism
-import {ref} from 'vue'
 import Demo from './Demo.vue'
 
 export default {
-  components: {Demo, Button},
+  components: {Demo},
   setup() {
-    const bool = ref(false)
-    return {bool, Switch1Demo, Switch2Demo, Prism}
+    return {Switch1Demo, Switch2Demo}
   },
 }
 </script>
