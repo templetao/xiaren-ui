@@ -55,10 +55,16 @@
     <Button>加载完毕</Button>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts">
 import Button from '../lib/Button.vue'
 
-const onClick = () => {
-  console.log(111)
+export default {
+  components: {Button},
+  setup() {
+    const onClick = () => {
+      console.log(111)
+    }
+    return {onClick}
+  }
 }
 </script>

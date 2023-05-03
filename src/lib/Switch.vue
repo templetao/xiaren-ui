@@ -1,9 +1,8 @@
 <template>
   <div>
-    <button
-      class="xiaren-switch"
-      @click="toggle"
-      :class="{ 'xiaren-checked': value }"
+    <button class="xiaren-switch" @click="toggle"
+            :class="{ 'xiaren-checked': value }"
+            :disabled="disabled"
     >
       <span></span>
       <p v-if="!value">0</p>
@@ -12,11 +11,14 @@
   </div>
 </template>
 <script lang="ts">
-import {ref} from 'vue'
 
 export default {
   props: {
     value: Boolean,
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     const toggle = () => {
@@ -43,6 +45,9 @@ $h2: $h - 4px;
   outline: none;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  &[disabled] {
+    pointer-events: none;
+  }
 
   &:focus {
     box-shadow: 0 0 5px rgba(191, 191, 191, 0.5);

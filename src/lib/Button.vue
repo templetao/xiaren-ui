@@ -45,16 +45,11 @@ export default {
 }
 </script>
 <style lang="scss">
-// 默认高度
 $h: 32px;
-// 边框默认颜色
 $border-color: #d9d9d9;
-// 默认字体颜色
 $color: #333;
-// 颜色参数
 $blue: #40a9ff;
 $red: #f56c6c;
-// 角度参数
 $radius: 4px;
 $grey: #909399;
 .xiaren-button {
@@ -109,8 +104,7 @@ $grey: #909399;
     box-shadow: none;
     color: inherit;
 
-    &:hover,
-    &:focus {
+    &:hover, &:focus {
       background: darken(white, 5%);
     }
   }
@@ -191,12 +185,10 @@ $grey: #909399;
         border-color: $grey;
       }
 
-      //   pointer-events: none;
     }
   }
 
-  &.xiaren-theme-link,
-  &.xairen-theme-text {
+  &.xiaren-theme-link, &.xiaren-theme-text {
     &[disabled] {
       cursor: not-allowed;
       color: $grey;
