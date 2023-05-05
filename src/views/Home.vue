@@ -81,6 +81,7 @@ export default {
     flex-wrap: wrap;
 
     > li {
+      color: #6f486b;
       margin: 16px 0;
       display: grid;
       justify-content: start;
@@ -118,7 +119,7 @@ export default {
   // background: rgb(202, 249, 234);
 
   > .actions {
-    padding: 8px 0;
+    padding: 8px 4px;
     color: white;
     outline: none;
 
