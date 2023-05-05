@@ -50,7 +50,7 @@ aside {
   top: 0;
   left: 0;
   width: 200px;
-  height: 100%;
+  height: 110vh;
   // font-size: 18px;
   padding: 80px 0 16px;
   background: #fff;

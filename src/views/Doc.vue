@@ -56,12 +56,13 @@ $aside-index: 10;
     padding: 60px;
     background-color: #fff;
     @media (max-width: 500px) {
-      padding: 24px;
+      padding: 60px 30px;
     }
   }
 }
 
 main {
+  height: 100vh;
   overflow: auto;
 }
 </style>

@@ -13,6 +13,7 @@
 .slide-enter-active, .slide-leave-active {
   transition: all .3s linear;
 }
+
 .slide-enter-from, .slide-leave-to {
   transform: translateX(-200px);
 }
@@ -20,6 +21,39 @@
 .fade-enter-active, .fade-leave-active {
   transition: all 250ms linear;
 }
+
 .fade-enter-from, .fade-leave-to {
   transform: rotateX(-90deg);
+}
+
+.first-title {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+.second-title {
+  h2 {
+    position: relative;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+
+    &::before {
+      content: "#";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -0.7em;
+      color: #ff1f1f;
+      font-weight: 700;
+    }
+  }
+
+  p {
+    font-size: 0.9em;
+
+    span {
+      font-weight: 700;
+      color: #ff1f1f;
+    }
+  }
 }

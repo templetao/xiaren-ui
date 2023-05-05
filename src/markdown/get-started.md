@@ -1,23 +1,42 @@
-# 开始
+## 开始使用
 
-欢迎使用xiaren-UI
+## 引入 `xiaren-ui`
 
----
+#### 完整引入
 
-## 介绍
+```
+    import 'xiaren-ui/package/lib/xiaren-ui.css'
+    import { createApp } from 'vue'
+    import App from './App.vue'
+    import { AliveWorkUI } from 'xairen-ui'
+    createApp(App)
+      .use(XiarenUI)
+      .mount('#app')
+```
 
-xiaren-UI是一个简洁的前端UI框架,基于vue3.0的开源UI组件库, 使用`vite` `vue3.0` `typescript`搭建, 
-由[xiaren](https://github.com/templetao)开发, 如果你不满框架原生样式, 不必担心类名命名的问题，
-覆盖样式也是可以的, 同时xiaren-UI还支持`移动端`显示
+> 以上代码便完成了 xiaren-ui 的引入，需要注意的是，样式文件需要单独引入。
 
+#### 按需引入
 
-<br><br>
+> 如果你只希望引入部分组件，比如 Button ，那么需要在 main.js 中写入以下内容：
 
->#### 版本:***1.0.0***
->* 更新内容:暂无
----
+```
+    import 'xiaren-ui/package/lib/xiaren-ui.css'
+    import { createApp } from 'vue'
+    import { Button } from 'alive-work-ui'
+    import App from './App.vue'
+    createApp(App).use(Button).mount('#app')
+```
 
+> 完整组件列表和引入方式
 
-<div style='display:flex;justify-content:space-between;margin:20px 0 '>
-<div>下一节:<a href='#/Use'>安装与使用</a></div>  
-</div>
+```
+    import App from './App.vue'
+    import { createApp } from 'vue'
+    import {Button,Switch,Dialog,Tabs} from 'xiaren-ui'
+    createApp(App)
+        .component('Button',Button)
+        .component('Switch',Switch)
+        .component('Dialog',Dialog)
+        .component('Tabs',Tabs)
+```

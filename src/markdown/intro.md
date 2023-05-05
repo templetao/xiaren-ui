@@ -1,12 +1,23 @@
-# 介绍
+# 开始
 
-Xiaren UI 是一款基于 Vue 3 和 TypeScript 的 UI 组件库。
+欢迎使用xiaren-UI
 
-这款组件库其实是我为了学习Vue3知识而写的，全程亲手编写，尽量不采用第三方库，包括你现在看到的这个官网也几乎都是我自己写的。
+---
 
-不建议你将此 UI 库用于生产环境。但如果你是抱着看源代码的目的来的，那么这个库还是值得一看的。
+## 介绍
 
-源代码放在了 github.com/templetao/xxxxxxx，历史提交信息非常规范，你可以按提交的顺序逐个查看；你也可以直接查看每个组件的源代码和示例，运行方法见
-README.md。
+xiaren-UI是一个简洁的前端UI框架,基于vue3.0的开源UI组件库, 使用`vite` `vue3.0` `typescript`搭建,
+由[xiaren](https://github.com/templetao)开发, 如果你不满框架原生样式, 不必担心类名命名的问题，
+覆盖样式也是可以的, 同时xiaren-UI还支持`移动端`显示
 
-下一节：[安装](#/doc/install)
+
+<br><br>
+
+>#### 版本:***1.0.0***
+>* 更新内容:暂无
+---
+
+
+<div style='display:flex;justify-content:space-between;margin:20px 0 '>
+<div>下一节:<a href='#/doc/install'>安装</a></div>  
+</div>
