@@ -34,7 +34,7 @@ $aside-index: 10;
   > .content {
     flex-grow: 1; //高度变化时占据剩余空间
     padding-top: 60px;
-    padding-left: 150px;
+    padding-left: 180px;
     @media (max-width: 500px) {
       padding-top: 70px;
       padding-left: 0;
@@ -53,10 +53,10 @@ $aside-index: 10;
 
   > main {
     flex-grow: 1; //宽度变化时占据剩余空间
-    padding: 16px 16px 16px 100px;
+    padding: 60px;
     background-color: #fff;
     @media (max-width: 500px) {
-      padding-left: 24px;
+      padding: 24px;
     }
   }
 }
