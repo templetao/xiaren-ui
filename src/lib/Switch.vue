@@ -2,9 +2,11 @@
   <div>
     <button class="xiaren-switch" @click="toggle"
             :class="{ 'xiaren-checked': value }"
-            :disabled="disabled"
+            :disabled="loading ? true : disabled"
     >
-      <span></span>
+      <span><span class="xiaren-switch-loading" v-if="loading"></span></span>
+      <p v-if="value">on</p>
+      <p v-else>off</p>
     </button>
   </div>
 </template>
@@ -14,6 +16,10 @@ export default {
   props: {
     value: Boolean,
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    loading: {
       type: Boolean,
       default: false
     }
@@ -42,7 +48,8 @@ $h2: $h - 4px;
   border-radius: $h/2;
   outline: none;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  transition: all 250ms ease-in-out;
+
   &[disabled] {
     pointer-events: none;
   }
@@ -65,16 +72,27 @@ $h2: $h - 4px;
     border-radius: $h/2;
     background-color: #fff;
     transition: all 250ms ease-in-out;
+
+    > .xiaren-switch-loading {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      border-radius: 8px;
+      border-color: lighten(#8486ab, 20%) lighten(#8486ab, 10%) #8486ab transparent;;
+      border-style: solid;
+      border-width: 2px;
+      animation: xiaren-spin 1s infinite linear;
+    }
   }
 
   > p {
     display: inline-block;
-    width: 12px;
+    width: 14px;
     height: $h;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
-    margin: 0 7px 0 25px;
-    transition: margin 0.25s ease-in-out;
+    margin: 0 6px 0 22px;
+    transition: margin 250ms ease-in-out;
   }
 
   &:active {
