@@ -1,5 +1,6 @@
 <template>
-  <button class="xiaren-button" :class="classes" :disabled="disabled">
+  <button class="xiaren-button" :class="classes"
+          :disabled="loading ? true : disabled">
     <span v-if="loading" class="xiaren-loadingIndicator"></span>
     <slot></slot>
   </button>
@@ -9,9 +10,9 @@ import {computed} from 'vue'
 
 export default {
   props: {
-    theme: {
-      type: String,
-      default: 'button',
+    round: {
+      type: Boolean,
+      default: false,
     },
     size: {
       type: String,
@@ -32,10 +33,10 @@ export default {
   },
 
   setup(props) {
-    const {theme, size, level} = props
+    const {round, size, level} = props
     const classes = computed(() => {
       return {
-        [`xiaren-theme-${theme}`]: theme,
+        [`xiaren-${round ? 'round' : 'normal'}`]: round,
         [`xiaren-size-${size}`]: size,
         [`xiaren-level-${level}`]: level,
       }
@@ -46,12 +47,14 @@ export default {
 </script>
 <style lang="scss">
 $h: 32px;
-$border-color: #d9d9d9;
+$border-color: #333;
 $color: #333;
 $blue: #40a9ff;
 $red: #f56c6c;
 $radius: 4px;
 $grey: #909399;
+$roundRadius: 32px;
+
 .xiaren-button {
   box-sizing: border-box;
   height: $h;
@@ -68,18 +71,21 @@ $grey: #909399;
   border-radius: $radius;
   box-shadow: 0 1px 0 fade-out(black, 0.95);
   transition: background 0.25s;
-  //   相邻组件间相隔8px
-  & + & {
-    margin-left: 8px;
+  margin: 0 10px 8px 0;
+
+  @media (min-width: 500px) {
+    &:hover {
+      animation: button-hover 0.5s linear forwards;
+      &[disabled] {
+        animation: none;
+      }
+    }
   }
 
-  &:hover,
   &:focus {
     color: $blue;
     border-color: $blue;
-  }
-
-  &:focus {
+    box-shadow: 0 0 10px #ccc;
     outline: none;
   }
 
@@ -87,26 +93,15 @@ $grey: #909399;
     border: 0;
   }
 
-  &.xiaren-theme-link {
-    border-color: transparent;
-    box-shadow: none;
-    color: $blue;
-
-    &:hover,
-    &:focus {
-      color: lighten($blue, 20%);
-      text-decoration: underline;
-    }
+  &.xiaren-round {
+    border-radius: $roundRadius;
   }
 
-  &.xiaren-theme-text {
-    border-color: transparent;
-    box-shadow: none;
-    color: inherit;
-
-    &:hover, &:focus {
-      background: darken(white, 5%);
-    }
+  &[disabled] {
+    cursor: not-allowed;
+    color: #fff;
+    background-color: #ddd;
+    border: none;
   }
 
   &.xiaren-size-big {
@@ -121,83 +116,28 @@ $grey: #909399;
     padding: 0 4px;
   }
 
-  &.xiaren-theme-button {
-    &.xiaren-level-main {
-      background: $blue;
-      color: white;
-      border-color: $blue;
-
-      &:hover, &:focus {
-        background: darken($blue, 10%);
-        border-color: darken($blue, 10%);
-      }
-    }
-
-    &.xiaren-level-danger {
-      background: $red;
-      border-color: $red;
-      color: white;
-
-      &:hover, &:focus {
-        background: darken($red, 10%);
-        border-color: darken($red, 10%);
-      }
-    }
+  &.xiaren-level-primary {
+    color: #fff;
+    border: none;
+    background-color: #1976d2;
   }
 
-  &.xiaren-theme-link {
-    &.xiaren-level-danger {
-      color: $red;
-
-      &:hover, &:focus {
-        color: darken($red, 10%);
-      }
-    }
+  &.xiaren-level-success {
+    color: #fff;
+    border: none;
+    background-color: #13ce66;
   }
 
-  &.xiaren-theme-text {
-    &.xiaren-level-main {
-      color: $blue;
-
-      &:hover,
-      &:focus {
-        color: darken($blue, 10%);
-      }
-    }
-
-    &.xiaren-level-danger {
-      color: $red;
-
-      &:hover,
-      &:focus {
-        color: darken($red, 10%);
-      }
-    }
+  &.xiaren-level-warning {
+    color: #fff;
+    border: none;
+    background-color: #ffc107;
   }
 
-  &.xiaren-theme-button {
-    &[disabled] {
-      cursor: not-allowed;
-      color: $grey;
-      border-color: $grey;
-
-      &:hover {
-        border-color: $grey;
-      }
-
-    }
-  }
-
-  &.xiaren-theme-link, &.xiaren-theme-text {
-    &[disabled] {
-      cursor: not-allowed;
-      color: $grey;
-
-      &:hover {
-        text-decoration: none;
-        background-color: transparent;
-      }
-    }
+  &.xiaren-level-error {
+    color: #fff;
+    border: none;
+    background-color: #ff4f57;
   }
 
   > .xiaren-loadingIndicator {

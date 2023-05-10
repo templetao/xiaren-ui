@@ -57,12 +57,16 @@ $border-color: #333;
   }
 
   &-component {
-    padding: 16px;
+    padding: 20px 16px;
   }
 
   &-actions {
     padding: 8px 16px;
     border-top: 1px solid $border-color;
+
+    > :first-child {
+      animation: none;
+    }
   }
 
   &-code {
