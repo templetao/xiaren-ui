@@ -1,17 +1,11 @@
 <demo>
-常规使用
+基本用法
 </demo>
 <template>
   <div>
-    <Button @click="toggle">打开对话框</Button>
-    <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
-      <template v-slot:content>
-        <strong>hi</strong>
-        <div>hi2</div>
-      </template>
-      <template v-slot:title>
-        <strong>加粗的标题</strong>
-      </template>
+    <Button level="primary" @click="toggle">打开 Dialog</Button>
+    <Dialog v-model:visible="showDialog">
+      <p>这是内容</p>
     </Dialog>
   </div>
 </template>
@@ -24,15 +18,11 @@ import {ref} from 'vue'
 export default {
   components: {Dialog, Button},
   setup() {
-    const x = ref(false)
+    const showDialog = ref(false)
     const toggle = () => {
-      x.value = !x.value
+      showDialog.value = !showDialog.value
     }
-    const f1 = () => {
-      return false
-    }
-    const f2 = () => {}
-    return {x, toggle, f1, f2}
+    return {showDialog, toggle}
   }
 }
 </script>

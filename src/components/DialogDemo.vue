@@ -1,6 +1,17 @@
 <template>
-  <h1>Dialog 示例</h1>
+  <h1 class="first-title">Dialog 示例</h1>
+
+  <section class="second-title">
+    <h2>基础用法</h2>
+    <p>
+      使用<span>v-model</span>绑定一个<span>Boolean</span>类型的变量到<span>Dialog</span>组件
+    </p>
+  </section>
   <Demo :component="Dialog1Demo"/>
+  <section class="second-title">
+    <h2>利用TS打开 Dialog</h2>
+    <p>引入<span>openDialog</span>模块创建一个<span>Dialog</span>组件</p>
+  </section>
   <Demo :component="Dialog2Demo"/>
 </template>
 
