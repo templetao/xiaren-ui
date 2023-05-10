@@ -155,11 +155,13 @@ $border-color: #d9d9d9;
       transform: translate(-50%, -50%) rotate(45deg);
     }
 
-    &:hover {
-      background-color: #f57272;
+    @media (min-width: 500px) {
+      &:hover {
+        background-color: #f57272;
 
-      &::before, &::after {
-        background-color: #fff;
+        &::before, &::after {
+          background-color: #fff;
+        }
       }
     }
   }

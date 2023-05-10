@@ -8,7 +8,7 @@
     import 'xiaren-ui/package/lib/xiaren-ui.css'
     import { createApp } from 'vue'
     import App from './App.vue'
-    import { AliveWorkUI } from 'xairen-ui'
+    import { XiarenUI } from 'xairen-ui'
     createApp(App)
       .use(XiarenUI)
       .mount('#app')
@@ -23,7 +23,7 @@
 ```
     import 'xiaren-ui/package/lib/xiaren-ui.css'
     import { createApp } from 'vue'
-    import { Button } from 'alive-work-ui'
+    import { Button } from 'xiaren-ui'
     import App from './App.vue'
     createApp(App).use(Button).mount('#app')
 ```
