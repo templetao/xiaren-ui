@@ -8,6 +8,15 @@
     </p>
   </section>
   <Demo :component="Dialog1Demo"/>
+
+  <section class="second-title">
+    <h2>支持 bottomBtn</h2>
+    <p>
+      在<span>Dialog</span>组件中添加<span>bottomBtn</span>属性，以此来决定<span>Dialog</span>组件是否显示<span>处理button</span>
+    </p>
+  </section>
+  <Demo :component="DialogBottom"/>
+
   <section class="second-title">
     <h2>利用TS打开 Dialog</h2>
     <p>引入<span>openDialog</span>模块创建一个<span>Dialog</span>组件</p>
@@ -19,11 +28,12 @@
 import Demo from './Demo.vue'
 import Dialog1Demo from './Dialog1.demo.vue'
 import Dialog2Demo from './Dialog2.demo.vue'
+import DialogBottom from './DialogBottom.vue'
 
 export default {
   components: {Demo},
   setup() {
-    return {Dialog1Demo, Dialog2Demo}
+    return {Dialog1Demo, Dialog2Demo, DialogBottom}
   }
 }
 </script>
