@@ -7,16 +7,25 @@
     </p>
   </section>
   <Demo :component="Tabs1Demo"/>
+
+  <section class="second-title">
+    <h2>支持disabled属性</h2>
+    <p>
+      在<span>Tab</span>组件中添加<span>disabled</span>属性，以此来禁止选中<span>该Tab</span>组件
+    </p>
+  </section>
+  <Demo :component="TabsDisabled"/>
 </template>
 
 <script lang="ts">
 import Demo from './Demo.vue'
 import Tabs1Demo from './Tabs1.demo.vue'
+import TabsDisabled from './TabsDisabled.vue'
 
 export default {
   components: {Demo},
   setup() {
-    return {Tabs1Demo}
+    return {Tabs1Demo, TabsDisabled}
   },
 }
 </script>
