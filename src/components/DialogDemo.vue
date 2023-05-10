@@ -10,6 +10,16 @@
   <Demo :component="Dialog1Demo"/>
 
   <section class="second-title">
+    <h2>支持 closeOnClickOverlay</h2>
+    <p>
+      在<span>Dialog</span>组件中添加<span>closeOnClickOverlay</span>属性，以此来决定是否通过<span>点击遮罩层</span>关闭<span>Dialog</span>组件
+    </p>
+  </section>
+  <Demo :component="DialogOverlay"/>
+
+
+
+  <section class="second-title">
     <h2>支持 bottomBtn</h2>
     <p>
       在<span>Dialog</span>组件中添加<span>bottomBtn</span>属性，以此来决定<span>Dialog</span>组件是否显示<span>处理button</span>
@@ -29,11 +39,12 @@ import Demo from './Demo.vue'
 import Dialog1Demo from './Dialog1.demo.vue'
 import Dialog2Demo from './Dialog2.demo.vue'
 import DialogBottom from './DialogBottom.vue'
+import DialogOverlay from './DialogOverlay.vue'
 
 export default {
   components: {Demo},
   setup() {
-    return {Dialog1Demo, Dialog2Demo, DialogBottom}
+    return {Dialog1Demo, Dialog2Demo, DialogBottom, DialogOverlay}
   }
 }
 </script>
