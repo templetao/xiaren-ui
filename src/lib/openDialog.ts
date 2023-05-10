@@ -2,11 +2,11 @@ import Dialog from './Dialog.vue'
 import {createApp, h} from 'vue'
 
 export const openDialog = (options) => {
-  const {title, content, ok, cancel} = options
+  const {title, content, ok, cancel, bottomBtn} = options
   const div = document.createElement('div')
   document.body.appendChild(div)
   const close = () => {
-    app.unmount(div)
+    app.unmount()
     div.remove()
   }
   const app = createApp({
@@ -20,10 +20,12 @@ export const openDialog = (options) => {
               close()
             }
           },
+          title,
+          bottomBtn,
           ok,
           cancel,
         },
-        {title, content}
+        {content}
       )
     },
   })

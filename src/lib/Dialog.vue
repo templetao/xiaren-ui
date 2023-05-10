@@ -4,15 +4,16 @@
       <div class="xiaren-dialog-overlay" @click="onClickOverlay"></div>
       <div class="xiaren-dialog-wrapper">
         <div class="xiaren-dialog">
-          <header>
-            <slot name="title"/>
-            <span class="xiaren-dialog-close" @click="close"></span>
+          <span class="xiaren-dialog-close" @click="close"></span>
+          <header v-if="showTitle">
+            <h1>{{ title }}</h1>
           </header>
           <main>
+            <slot/>
             <slot name="content"/>
           </main>
-          <footer>
-            <Button level="main" @click="ok">OK</Button>
+          <footer v-if="bottomBtn">
+            <Button level="primary" @click="ok">confirm</Button>
             <Button @click="cancel">Cancel</Button>
           </footer>
         </div>
@@ -23,6 +24,7 @@
 
 <script lang="ts">
 import Button from './Button.vue'
+import {computed} from 'vue'
 
 export default {
   props: {
@@ -30,9 +32,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    bottomBtn: {
+      type: Boolean,
+      default: false
+    },
     closeOnClickOverlay: {
       type: Boolean,
       default: true,
+    },
+    title: {
+      type: String,
+      default: ''
     },
     ok: Function,
     cancel: Function,
@@ -49,6 +59,9 @@ export default {
         close()
       }
     }
+    const showTitle = computed(() => {
+      return props.title !== ''
+    })
     const ok = () => {
       if (props.ok && props.ok() !== false) {
         close()
@@ -59,10 +72,7 @@ export default {
       close()
     }
     return {
-      close,
-      onClickOverlay,
-      ok,
-      cancel,
+      close, onClickOverlay, ok, cancel, showTitle
     }
   },
 }
@@ -72,6 +82,7 @@ export default {
 $radius: 4px;
 $border-color: #d9d9d9;
 .xiaren-dialog {
+  position: relative;
   background: white;
   border-radius: $radius;
   box-shadow: 0 0 3px fade-out(black, 0.5);
@@ -106,7 +117,8 @@ $border-color: #d9d9d9;
   }
 
   > main {
-    padding: 12px 16px;
+    min-height: 8em;
+    padding: 32px 16px 16px 20px;
   }
 
   > footer {
@@ -116,7 +128,9 @@ $border-color: #d9d9d9;
   }
 
   &-close {
-    position: relative;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     display: inline-block;
     width: 32px;
     height: 32px;
