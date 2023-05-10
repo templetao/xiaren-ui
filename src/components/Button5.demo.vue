@@ -1,10 +1,10 @@
 <demo>
-支持显示加载中
+支持 loading
 </demo>
 <template>
   <div>
-    <Button loading>加载中</Button>
-    <Button>加载完毕</Button>
+    <Button loading>loading</Button>
+    <Button loading round>loading</Button>
   </div>
 </template>
 
