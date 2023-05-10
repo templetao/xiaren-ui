@@ -17,7 +17,15 @@
   </section>
   <Demo :component="DialogOverlay"/>
 
-
+  <section class="second-title">
+    <h2>支持 title</h2>
+    <p>
+      在<span>Dialog</span>组件中添加<span>title</span>属性，以此来决定<span>Dialog</span>组件是否显示<span
+    >标题</span
+    >
+    </p>
+  </section>
+  <Demo :component="DialogTitle"/>
 
   <section class="second-title">
     <h2>支持 bottomBtn</h2>
@@ -40,11 +48,12 @@ import Dialog1Demo from './Dialog1.demo.vue'
 import Dialog2Demo from './Dialog2.demo.vue'
 import DialogBottom from './DialogBottom.vue'
 import DialogOverlay from './DialogOverlay.vue'
+import DialogTitle from './DialogTitle.vue'
 
 export default {
   components: {Demo},
   setup() {
-    return {Dialog1Demo, Dialog2Demo, DialogBottom, DialogOverlay}
+    return {Dialog1Demo, Dialog2Demo, DialogBottom, DialogOverlay, DialogTitle}
   }
 }
 </script>
